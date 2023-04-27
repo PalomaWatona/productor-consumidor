@@ -1,6 +1,4 @@
 #include <stdio.h>
-
-
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -10,16 +8,16 @@
 #include <stdbool.h>
 #include <math.h>
 
-//El padré será la sucursal
 
-
+// VARIABLES GLOBALES
 int tamaño = 20;
 bool repartiendo = false;
 int despachos = 10;
 int tiempo_despacho = 2;
 int tiempo_vuelta = 0;
-int buffer[20];
+int buffer[20][10];
 int sucursales[10];
+
 
 void Sucursal(){
   
@@ -31,7 +29,7 @@ void Camion(){
 
 int main(void) {
 
-//GENERAR LOS NÙMEROS ALEATORIOS: CANTIDAD DE PAQUETES GENERADOS
+    //GENERAR LOS NÙMEROS ALEATORIOS: CANTIDAD DE PAQUETES GENERADOS
     int paquetes; 
     srand(time(NULL));
     paquetes=rand()%(20-0+1);
@@ -43,11 +41,16 @@ int main(void) {
     }
     //printf("Cantidad: %i  \n", paquetes);
 
-// GENERAR NÙMEROS ALEATORIOS: DESTINO
-    int v; 
+
+    //GENERAR NÙMEROS ALEATORIOS: DESTINO 
+    int sucursal; 
     srand(time(NULL));
-    v=rand()%(10-1+1);
-    printf("Cantidad: %i al Destino: %i  \n", paquetes, v);
+    sucursal=rand()%(10-1+1);
+    printf("Cantidad: %i al Destino: %i  \n", paquetes, sucursal);
+
+    memset(buffer, 0, sizeof(buffer));
+
+    scanf();
 
 
   srand(20);
