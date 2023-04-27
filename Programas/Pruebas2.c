@@ -6,6 +6,25 @@
 int itemCount = 0;
 int buffer[BUFFER_SIZE];
 
+
+void productor(){
+    int n = 0;
+    /*while (n == 0){
+        printf("uwu\n");
+        sleep();
+    }
+    */
+    sleep();
+    printf("Soy el padre\n");
+}
+
+void consumidor(){
+    sleep();
+    printf("Soy el hijo");
+    //wakeup(productor);
+}
+
+
 int main(){
     
     srand(time(NULL));
@@ -21,6 +40,7 @@ int main(){
     printf("\n");
 
     //Inicio del proceso hijo (consumidor)
+    
     if (fork() == 0){
         consumidor();
     }
@@ -28,22 +48,6 @@ int main(){
         productor();
     }
     return 0;
-}
-
-void productor(){
-    int n = 0;
-    /*while (n == 0){
-        printf("uwu\n");
-        sleep();
-    }
-    */
-    printf("Soy el padre\n");
-}
-
-void consumidor(){
-    //sleep(2);
-    printf("Soy el hijo");
-    usleep(productor);
 }
 
 
