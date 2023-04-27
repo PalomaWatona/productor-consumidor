@@ -4,10 +4,10 @@
 
 #define BUFFER_SIZE 20
 int itemCount = 0;
-
+int buffer[BUFFER_SIZE];
 
 int main(){
-    int buffer[BUFFER_SIZE];
+    
     srand(time(NULL));
 
     for (int i = 0; i < BUFFER_SIZE; i++){
@@ -32,14 +32,18 @@ int main(){
 
 void productor(){
     int n = 0;
-    while(n == 0){
-        
+    /*while (n == 0){
+        printf("uwu\n");
+        sleep();
     }
+    */
     printf("Soy el padre\n");
 }
 
 void consumidor(){
+    //sleep(2);
     printf("Soy el hijo");
+    usleep(productor);
 }
 
 
