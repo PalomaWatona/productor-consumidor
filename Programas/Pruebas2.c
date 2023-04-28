@@ -39,9 +39,13 @@ void consumidor(){
     printf("Soy el hijo");
     //printf("a: %i", itemCount);
     for (int i = 0; i < itemCount; i++){
-        sleep(1);
+        //sleep(1);
         printf("El camion llegò al destino: %d\n", buffer[i]+1);
+        if (buffer[i] < buffer[i+1]){
+            sleep(2);
+        }
     }
+
     //wakeup(productor);
 }
 
