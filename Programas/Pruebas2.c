@@ -42,10 +42,13 @@ void consumidor(){
         //sleep(1);
         printf("El camion llegò al destino: %d\n", buffer[i]+1);
         if (buffer[i] < buffer[i+1]){
-            sleep(2);
+            int a = (buffer[i+1] - buffer[i])*2;
+            sleep(a);
         }
     }
-
+    int tiempoFinal = (buffer[itemCount-1]+1)*2;
+    printf("\nEl camion se demorará %i segundos en llegar a la casa matriz desde el último destino\n", tiempoFinal);
+    //sleep()
     //wakeup(productor);
 }
 
