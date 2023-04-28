@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define BUFFER_SIZE 20;
+#define BUFFER_SIZE 20
 
 int camion[BUFFER_SIZE];
 
@@ -87,9 +87,9 @@ void consumirItem(){
   for(i = 0; i < BUFFER_SIZE; i++){
     
   }
-  camion[itemCount] = 
+  //camion[itemCount] = 
 	//Quitar el elemento del BUFFER, se puede mostrar en pantalla el item consumido
-}
+  }
 int sacarItemDelBuffer(){
 	
 	return 0;
