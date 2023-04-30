@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <signal.h>
+
 
 #define BUFFER_SIZE 20
 int itemCount = 0;
@@ -29,6 +31,7 @@ void productor(){
     }
     printf("\nItem Count= %i\n", itemCount);
     //printf("Soy el padre\n");
+    contador = 0;
 }
 
 
@@ -36,6 +39,7 @@ void productor(){
 void consumidor(){
     sleep(2);
     ordenar();
+    int aux = buffer[19];
     printf("Soy el hijo");
     //printf("a: %i", itemCount);
     for (int i = 0; i < itemCount; i++){
@@ -43,10 +47,15 @@ void consumidor(){
         printf("El camion llegò al destino: %d\n", buffer[i]+1);
         if (buffer[i] < buffer[i+1]){
             int a = (buffer[i+1] - buffer[i])*2;
-            sleep(a);
+            //sleep(a);
         }
     }
-    int tiempoFinal = (buffer[itemCount-1]+1)*2;
+    //SE VACÌA EL BUFFER
+    for (int i = 0; i<20; i++){
+        buffer[i] = -1;
+        //printf("\nBuffer vacio = %d\n", buffer[i]);
+    }
+    int tiempoFinal = (aux+1)*2;
     printf("\nEl camion se demorará %i segundos en llegar a la casa matriz desde el último destino\n", tiempoFinal);
     //sleep()
     //wakeup(productor);
@@ -72,24 +81,18 @@ void ordenar(){
 
 
 int main(){
-    
-    //srand(time(NULL));
-/*
-    for (int i = 0; i < BUFFER_SIZE; i++){
-        buffer[i] = rand()%(20-1+1);
-    }
-
-    printf("Los nùmeros aleatorios generados son: ");
-    for (int i = 0; i < BUFFER_SIZE; i++){
-        printf("%d ", buffer[i]);
-    }
-    printf("\n");
-*/
-    //Inicio del proceso hijo (consumidor)
-
     productor();
-    if (fork() == 0){
-        consumidor();
+    while (1){
+        sleep(4);
+        int pid = fork();
+        printf("\nid hijo: %d\n", pid);
+        if (pid == 0){
+            consumidor();
+            break;
+
+        }
+        itemCount = 0;
+        productor();
     }
     return 0;
 }
