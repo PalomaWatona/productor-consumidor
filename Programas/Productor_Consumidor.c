@@ -89,7 +89,6 @@ int main(){
         if (pid == 0){
             consumidor();
             break;
-
         }
         itemCount = 0;
         productor();
