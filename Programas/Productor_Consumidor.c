@@ -12,7 +12,7 @@ int contador;
 //2 segundos de espera para cada destino
 //CASA MATRIZ
 void productor(){
-    printf("Padre:\n");
+    printf("Sucursal:\n");
     srand(time(NULL));
     while(itemCount != BUFFER_SIZE){
         buffer[contador] = rand()%(11-2+1);
@@ -22,7 +22,6 @@ void productor(){
     for (int i = 0; i < 20; i++){
         printf("%d ", buffer[i]);
     }
-    printf("\nItem Count= %i\n", itemCount);
     contador = 0;
 }
 
@@ -31,14 +30,20 @@ void productor(){
 void consumidor(){
     sleep(2);
     ordenar();
+    int cont = 0;
     int aux = buffer[19];
-    printf("Soy el hijo");
     for (int i = 0; i < itemCount; i++){
         //sleep(1);
-        printf("El camion llegò al destino: %d\n", buffer[i]+1);
+        cont++;
+        //printf("El camion llegò al destino: %d\n", buffer[i]+1);
         if (buffer[i] < buffer[i+1]){
             int a = (buffer[i+1] - buffer[i])*2;
+            printf("El camion llegò al destino: %d con %d paquetes\n", buffer[i]+1, cont);
+            cont = 0;
             //sleep(a);
+        }
+        if (buffer[i] == buffer[19] && i == itemCount-1){
+            printf("El camion llegò al destino: %d con %d paquetes\n", buffer[i]+1, cont);
         }
     }
     //SE VACÌA EL BUFFER
